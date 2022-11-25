@@ -7,3 +7,4 @@
 *.pt
 *.pth
 /videos/
+/object_track/output/
