@@ -3,7 +3,7 @@
 /pose_estimation/kapao_with_kp_conf/runs/
 /pose_estimation/yolo_pose/runs/
 **/kp_labels/
-
+**/__pycache__/
 *.pt
 *.pth
 /videos/
