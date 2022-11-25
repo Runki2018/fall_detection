@@ -20,7 +20,7 @@ class CAVIARa(ImageDataset):
     dataset_dir = "CAVIARa"
     dataset_name = "caviara"
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         self.root = root
         self.train_path = os.path.join(self.root, self.dataset_dir)
 

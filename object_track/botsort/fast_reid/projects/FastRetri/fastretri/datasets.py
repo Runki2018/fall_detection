@@ -17,7 +17,7 @@ class Cars196(ImageDataset):
     dataset_dir = 'Cars_196'
     dataset_name = "cars"
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         self.root = root
         self.dataset_dir = os.path.join(self.root, self.dataset_dir)
         train_file = os.path.join(self.dataset_dir, "train.txt")
@@ -67,7 +67,7 @@ class InShop(Cars196):
     dataset_dir = "InShop"
     dataset_name = "inshop"
 
-    def __init__(self, root="datasets", **kwargs):
+    def __init__(self, root="data", **kwargs):
         self.root = root
         self.dataset_dir = os.path.join(self.root, self.dataset_dir)
         train_file = os.path.join(self.dataset_dir, "train.txt")

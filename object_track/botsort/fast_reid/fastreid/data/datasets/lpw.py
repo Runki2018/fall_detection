@@ -20,7 +20,7 @@ class LPW(ImageDataset):
     dataset_dir = "pep_256x128/data_slim"
     dataset_name = "lpw"
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         self.root = root
         self.train_path = os.path.join(self.root, self.dataset_dir)
 

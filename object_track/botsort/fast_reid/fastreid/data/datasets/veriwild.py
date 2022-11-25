@@ -26,7 +26,7 @@ class VeRiWild(ImageDataset):
     dataset_dir = "VERI-Wild"
     dataset_name = "veriwild"
 
-    def __init__(self, root='datasets', query_list='', gallery_list='', **kwargs):
+    def __init__(self, root='data', query_list='', gallery_list='', **kwargs):
         self.dataset_dir = osp.join(root, self.dataset_dir)
 
         self.image_dir = osp.join(self.dataset_dir, 'images')
@@ -100,7 +100,7 @@ class SmallVeRiWild(VeRiWild):
         - images: 41861.
     """
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         dataset_dir = osp.join(root, self.dataset_dir)
         self.query_list = osp.join(dataset_dir, 'train_test_split/test_3000_query.txt')
         self.gallery_list = osp.join(dataset_dir, 'train_test_split/test_3000.txt')
@@ -116,7 +116,7 @@ class MediumVeRiWild(VeRiWild):
         - images: 69389.
     """
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         dataset_dir = osp.join(root, self.dataset_dir)
         self.query_list = osp.join(dataset_dir, 'train_test_split/test_5000_query.txt')
         self.gallery_list = osp.join(dataset_dir, 'train_test_split/test_5000.txt')
@@ -132,7 +132,7 @@ class LargeVeRiWild(VeRiWild):
         - images: 138517.
     """
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         dataset_dir = osp.join(root, self.dataset_dir)
         self.query_list = osp.join(dataset_dir, 'train_test_split/test_10000_query.txt')
         self.gallery_list = osp.join(dataset_dir, 'train_test_split/test_10000.txt')

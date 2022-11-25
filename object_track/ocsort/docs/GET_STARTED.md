@@ -128,7 +128,7 @@ Download the COCO-pretrained YOLOX weight [here](https://github.com/Megvii-BaseD
     Similar to KITTI, we do not provide detector on CroHD head tracking dataset but adapt from detection results from existing results. Please download the results reported to the [evaluation server](https://motchallenge.net/results/Head_Tracking_21/) and place it at *datasets/headtrack/$tracker*
 
     ```shell
-    python tools/run_ocsort_public.py  --raw_results_path datasets/headtrack/$tracker --hp --dataset headtrack --out_path out_headtrack_results 
+    python tools/run_ocsort_public.py  --raw_results_path data/headtrack/$tracker --hp --dataset headtrack --out_path out_headtrack_results 
     ```
     Then, submit the output files to the evaluation server above for evaluation.
 

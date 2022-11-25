@@ -15,7 +15,7 @@ from ..datasets import DATASET_REGISTRY
 
 @DATASET_REGISTRY.register()
 class cuhkSYSU(ImageDataset):
-    """CUHK SYSU datasets.
+    """CUHK SYSU data.
 
     The dataset is collected from two sources: street snap and movie.
     In street snap, 12,490 images and 6,057 query persons were collected
@@ -29,7 +29,7 @@ class cuhkSYSU(ImageDataset):
     dataset_dir = 'cuhk_sysu'
     dataset_name = "cuhksysu"
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         self.root = root
         self.dataset_dir = osp.join(self.root, self.dataset_dir)
 

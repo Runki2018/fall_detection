@@ -36,7 +36,7 @@ class PartialREID(ImageDataset):
 
     dataset_name = "partialreid"
 
-    def __init__(self, root='datasets',):
+    def __init__(self, root='data',):
         self.root = root
 
         self.query_dir = osp.join(self.root, 'Partial_REID/partial_body_images')
@@ -50,7 +50,7 @@ class PartialREID(ImageDataset):
 class PartialiLIDS(ImageDataset):
     dataset_name = "partialilids"
 
-    def __init__(self, root='datasets',):
+    def __init__(self, root='data',):
         self.root = root
 
         self.query_dir = osp.join(self.root, 'PartialiLIDS/query')
@@ -64,7 +64,7 @@ class PartialiLIDS(ImageDataset):
 class OccludedREID(ImageDataset):
     dataset_name = "occludereid"
 
-    def __init__(self, root='datasets',):
+    def __init__(self, root='data',):
         self.root = root
 
         self.query_dir = osp.join(self.root, 'OccludedREID/query')

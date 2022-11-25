@@ -20,7 +20,7 @@ class CPLFW(ImageDataset):
     dataset_dir = "faces_emore_val"
     dataset_name = "cplfw"
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         self.root = root
         self.dataset_dir = os.path.join(self.root, self.dataset_dir)
 

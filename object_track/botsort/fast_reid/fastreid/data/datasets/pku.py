@@ -20,7 +20,7 @@ class PKU(ImageDataset):
     dataset_dir = "PKUv1a_128x48"
     dataset_name = 'pku'
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         self.root = root
         self.train_path = os.path.join(self.root, self.dataset_dir)
 

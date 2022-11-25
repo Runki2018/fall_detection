@@ -239,9 +239,9 @@ class kapao():  # Keypoint and Pose as Object
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    # parser.add_argument('--img-path', type=str, default='data/datasets/coco/images/test2017/000000000057.jpg',
+    # parser.add_argument('--img-path', type=str, default='data/data/coco/images/test2017/000000000057.jpg',
     parser.add_argument('--img-path', type=str,
-                        # default='data/datasets/coco/images/test2017/000000000057.jpg',
+                        # default='data/data/coco/images/test2017/000000000057.jpg',
                         default="/home/huangzhiyong/Project/kapao/res/crowdpose_100024.jpg",
                         help='image path')
     parser.add_argument('--model-path', type=str, default='./cpp_detect/model.onnx')

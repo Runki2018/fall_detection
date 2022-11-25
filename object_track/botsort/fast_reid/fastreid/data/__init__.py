@@ -11,7 +11,7 @@ from .build import (
 )
 from .common import CommDataset
 
-# ensure the builtin datasets are registered
+# ensure the builtin data are registered
 from . import datasets, samplers  # isort:skip
 
 __all__ = [k for k in globals().keys() if not k.startswith("_")]

@@ -138,8 +138,8 @@ class MOTEvaluator:
                 
                 if frame_id == 1:
                     tracker = BYTETracker(self.args)
-                    # det_file = os.path.join('datasets/MOT20/test', video_name.replace('FRCNN', 'FRCNN'), 'det/det.txt')
-                    det_file = os.path.join('datasets/mot/train', video_name.replace('FRCNN', 'FRCNN'), 'det/det.txt')
+                    # det_file = os.path.join('data/MOT20/test', video_name.replace('FRCNN', 'FRCNN'), 'det/det.txt')
+                    det_file = os.path.join('data/mot/train', video_name.replace('FRCNN', 'FRCNN'), 'det/det.txt')
                     dets_all = np.loadtxt(det_file, dtype=np.float64, delimiter=',')
     
                     if len(results) != 0:
@@ -426,8 +426,8 @@ class MOTEvaluator:
                 """
                     Here, you can use adaptive detection threshold as in BYTE
                     (line 268 - 292), which can boost the performance on MOT17/MOT20
-                    datasets, but we don't use that by default for a generalized 
-                    stack of parameters on all datasets.
+                    data, but we don't use that by default for a generalized 
+                    stack of parameters on all data.
                 """
                 if video_name not in video_names:
                     video_names[video_id] = video_name

@@ -1,6 +1,6 @@
 
 # train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
-path: datasets/coco
+path: data/coco
 labels: kp_labels_10k
 train: kp_labels_10k/img_txt/train2017.txt
 val: kp_labels_10k/img_txt/train2017.txt

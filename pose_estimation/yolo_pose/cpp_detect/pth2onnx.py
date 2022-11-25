@@ -13,7 +13,7 @@ print(sys.path)
 
 from models.experimental import attempt_load
 from models.yolo import Detect, Model
-# from utils.datasets import LoadImages
+# from utils.data import LoadImages
 from utils.general import (Profile, check_dataset, check_img_size,
                            check_requirements, check_version, colorstr, file_size)
 from utils.torch_utils import select_device

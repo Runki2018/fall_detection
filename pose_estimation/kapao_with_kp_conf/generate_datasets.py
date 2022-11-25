@@ -365,10 +365,10 @@ def merge_datasets(coco, mpii, crowdpose):
 
 
 if __name__ == '__main__':
-    # get_part_data(json_file="./datasets/coco/annotations/person_keypoints_train2017.json",
+    # get_part_data(json_file="./data/coco/annotations/person_keypoints_train2017.json",
     #               num_samples=10000)
     merge_datasets(
-        coco="data/datasets/coco/annotations/person_keypoints_train2017.json",
-        mpii="data/datasets/mpii/annotations/mpii_trainval.json",
-        crowdpose="data/datasets/crowdpose/annotations/mmpose_crowdpose_trainval.json"
+        coco="data/data/coco/annotations/person_keypoints_train2017.json",
+        mpii="data/data/mpii/annotations/mpii_trainval.json",
+        crowdpose="data/data/crowdpose/annotations/mmpose_crowdpose_trainval.json"
     )

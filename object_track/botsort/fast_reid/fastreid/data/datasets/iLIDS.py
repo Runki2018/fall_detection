@@ -20,7 +20,7 @@ class iLIDS(ImageDataset):
     dataset_dir = "iLIDS"
     dataset_name = "ilids"
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         self.root = root
         self.train_path = os.path.join(self.root, self.dataset_dir)
 

@@ -34,7 +34,7 @@ class DataLoader(torchDataLoader):
     https://gitlab.com/EAVISE/lightnet/-/blob/master/lightnet/data/_dataloading.py
 
     Note:
-        This dataloader only works with :class:`lightnet.data.Dataset` based datasets.
+        This dataloader only works with :class:`lightnet.data.Dataset` based data.
 
     Example:
         >>> class CustomSet(ln.data.Dataset):

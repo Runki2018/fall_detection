@@ -37,7 +37,7 @@ class Market1501Attr(Dataset):
     dataset_url = 'http://188.138.127.15:81/Datasets/Market-1501-v15.09.15.zip'
     dataset_name = "market1501"
 
-    def __init__(self, root='datasets', market1501_500k=False, **kwargs):
+    def __init__(self, root='data', market1501_500k=False, **kwargs):
         self.root = root
         self.dataset_dir = osp.join(self.root, self.dataset_dir)
 

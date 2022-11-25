@@ -253,7 +253,7 @@ class MOTEvaluatorPublic:
                 img_id = int(img_file_name[0].split('/')[-1].split(".")[0])
 
                 if video_name not in public_dets:
-                    det_path = "datasets/mot/train/{}/det/det.txt".format(video_name)
+                    det_path = "data/mot/train/{}/det/det.txt".format(video_name)
                     seq_dets = np.loadtxt(det_path, delimiter=",")
                     # seq_dets[:, 4:6] += seq_dets[:, 2:4]
                     public_dets[video_name] = seq_dets

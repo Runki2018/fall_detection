@@ -8,11 +8,11 @@ from ...utils.registry import Registry
 
 DATASET_REGISTRY = Registry("DATASET")
 DATASET_REGISTRY.__doc__ = """
-Registry for datasets
+Registry for data
 It must returns an instance of :class:`Backbone`.
 """
 
-# Person re-id datasets
+# Person re-id data
 from .mot17 import MOT17
 from .mot20 import MOT20
 from .cuhk03 import CUHK03
@@ -38,7 +38,7 @@ from .wildtracker import WildTrackCrop
 from .cuhk_sysu import cuhkSYSU
 
 
-# Vehicle re-id datasets
+# Vehicle re-id data
 from .veri import VeRi
 from .vehicleid import VehicleID, SmallVehicleID, MediumVehicleID, LargeVehicleID
 from .veriwild import VeRiWild, SmallVeRiWild, MediumVeRiWild, LargeVeRiWild

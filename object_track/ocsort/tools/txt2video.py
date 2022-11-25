@@ -106,8 +106,8 @@ def txt2img(visual_path="visual_val_gt"):
         os.makedirs(visual_path)
     color_list = colormap()
 
-    gt_json_path = 'datasets/mot/annotations/val_half.json'
-    img_path = 'datasets/mot/train/'
+    gt_json_path = 'data/mot/annotations/val_half.json'
+    img_path = 'data/mot/train/'
     show_video_names = ['MOT17-02-FRCNN', 
                     'MOT17-04-FRCNN',
                     'MOT17-05-FRCNN',
@@ -115,8 +115,8 @@ def txt2img(visual_path="visual_val_gt"):
                     'MOT17-10-FRCNN',        
                     'MOT17-11-FRCNN',
                     'MOT17-13-FRCNN']
-    test_json_path = 'datasets/mot/annotations/test.json'
-    test_img_path = 'datasets/mot/test/'
+    test_json_path = 'data/mot/annotations/test.json'
+    test_img_path = 'data/mot/test/'
     test_show_video_names = ['MOT17-01-FRCNN', 
                     'MOT17-03-FRCNN',
                     'MOT17-06-FRCNN',
@@ -132,7 +132,7 @@ def txt2img(visual_path="visual_val_gt"):
         img_dict = dict()
         
         if visual_path == "visual_val_gt":
-            txt_path = 'datasets/mot/train/' + show_video_name + '/gt/gt_val_half.txt'
+            txt_path = 'data/mot/train/' + show_video_name + '/gt/gt_val_half.txt'
         elif visual_path == "visual_yolox_x":
             txt_path = 'YOLOX_outputs/yolox_mot_x_1088/track_results/'+ show_video_name + '.txt'
         elif visual_path == "visual_test_predict":

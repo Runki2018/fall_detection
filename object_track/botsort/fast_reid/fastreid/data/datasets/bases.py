@@ -141,7 +141,7 @@ class Dataset(object):
 
 class ImageDataset(Dataset):
     """A base class representing ImageDataset.
-    All other image datasets should subclass it.
+    All other image data should subclass it.
     ``__getitem__`` returns an image given index.
     It will return ``img``, ``pid``, ``camid`` and ``img_path``
     where ``img`` has shape (channel, height, width). As a result,

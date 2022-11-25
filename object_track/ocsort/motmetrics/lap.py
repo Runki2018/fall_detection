@@ -43,7 +43,7 @@ else:
 def linear_sum_assignment(costs, solver=None):
     """Solve a linear sum assignment problem (LSA).
 
-    For large datasets solving the minimum cost assignment becomes the dominant runtime part.
+    For large data solving the minimum cost assignment becomes the dominant runtime part.
     We therefore support various solvers out of the box (currently lapsolver, scipy, ortools, munkres)
 
     Params

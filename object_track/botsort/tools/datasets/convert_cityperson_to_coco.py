@@ -3,8 +3,8 @@ import numpy as np
 import json
 from PIL import Image
 
-DATA_PATH = 'datasets/Cityscapes/'
-DATA_FILE_PATH = 'datasets/data_path/citypersons.train'
+DATA_PATH = 'data/Cityscapes/'
+DATA_FILE_PATH = 'data/data_path/citypersons.train'
 OUT_PATH = DATA_PATH + 'annotations/'
 
 def load_paths(data_path):
@@ -27,15 +27,15 @@ if __name__ == '__main__':
     video_cnt = 0
     for img_path, label_path in zip(img_paths, label_paths):
         image_cnt += 1
-        im = Image.open(os.path.join("datasets", img_path))
+        im = Image.open(os.path.join("data", img_path))
         image_info = {'file_name': img_path, 
                         'id': image_cnt,
                         'height': im.size[1], 
                         'width': im.size[0]}
         out['images'].append(image_info)
         # Load labels
-        if os.path.isfile(os.path.join("datasets", label_path)):
-            labels0 = np.loadtxt(os.path.join("datasets", label_path), dtype=np.float32).reshape(-1, 6)
+        if os.path.isfile(os.path.join("data", label_path)):
+            labels0 = np.loadtxt(os.path.join("data", label_path), dtype=np.float32).reshape(-1, 6)
             # Normalized xywh to pixel xyxy format
             labels = labels0.copy()
             labels[:, 2] = image_info['width'] * (labels0[:, 2] - labels0[:, 4] / 2)

@@ -2,10 +2,10 @@
 # Example usage: bash data/scripts/get_coco_kp.sh
 
 # Make dataset directories
-mkdir -p data/datasets/coco/images
+mkdir -p data/data/coco/images
 
 # Download/unzip annotations
-d='data/datasets/coco' # unzip directory
+d='data/data/coco' # unzip directory
 f1='annotations_trainval2017.zip'
 f2='image_info_test2017.zip'
 url=http://images.cocodataset.org/annotations/
@@ -15,7 +15,7 @@ for f in $f1 $f2; do
 done
 
 # Download/unzip images
-d='data/datasets/coco/images' # unzip directory
+d='data/data/coco/images' # unzip directory
 url=http://images.cocodataset.org/zips/
 f1='train2017.zip' # 19G, 118k images
 f2='val2017.zip'   # 1G, 5k images

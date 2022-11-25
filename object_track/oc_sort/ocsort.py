@@ -265,7 +265,7 @@ class OCSort(object):
             if iou_left.max() > self.iou_threshold:
                 """
                     NOTE: by using a lower threshold, e.g., self.iou_threshold - 0.1, you may
-                    get a higher performance especially on MOT17/MOT20 datasets. But we keep it
+                    get a higher performance especially on MOT17/MOT20 data. But we keep it
                     uniform here for simplicity
                 """
                 matched_indices = linear_assignment(-iou_left)
@@ -286,7 +286,7 @@ class OCSort(object):
             if iou_left.max() > self.iou_threshold:
                 """
                     NOTE: by using a lower threshold, e.g., self.iou_threshold - 0.1, you may
-                    get a higher performance especially on MOT17/MOT20 datasets. But we keep it
+                    get a higher performance especially on MOT17/MOT20 data. But we keep it
                     uniform here for simplicity
                 """
                 rematched_indices = linear_assignment(-iou_left)
@@ -386,7 +386,7 @@ class OCSort(object):
                 for j in range(num_trks):
                     if det_cates_left[i] != trk_cates_left[j]:
                             """
-                                For some datasets, such as KITTI, there are different categories,
+                                For some data, such as KITTI, there are different categories,
                                 we have to avoid associate them together.
                             """
                             cate_matrix[i][j] = -1e6

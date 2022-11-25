@@ -7,7 +7,7 @@
     continuous observations which are not recorded in the output
     tracking results by other methods). But this quick adaptation
     can provide a rough idea about OC-SORT's performance on
-    more datasets. For more strict study, we encourage to implement 
+    more data. For more strict study, we encourage to implement
     a specific detector on the target dataset and then run OC-SORT 
     over the raw detection results.
     NOTE: this script is not for the reported tracking with public

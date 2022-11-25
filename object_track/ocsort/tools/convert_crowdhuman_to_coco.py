@@ -3,7 +3,7 @@ import numpy as np
 import json
 from PIL import Image
 
-DATA_PATH = 'datasets/crowdhuman/'
+DATA_PATH = 'data/crowdhuman/'
 OUT_PATH = DATA_PATH + 'annotations/'
 SPLITS = ['val', 'train']
 DEBUG = False

@@ -20,7 +20,7 @@ class PeS3D(ImageDataset):
     dataset_dir = "3DPeS"
     dataset_name = "pes3d"
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         self.root = root
         self.train_path = os.path.join(self.root, self.dataset_dir)
 

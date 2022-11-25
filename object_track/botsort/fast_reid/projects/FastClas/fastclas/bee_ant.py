@@ -22,7 +22,7 @@ class Hymenoptera(ImageDataset):
     dataset_dir = 'hymenoptera_data'
     dataset_name = "hyt"
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         self.root = root
         self.dataset_dir = os.path.join(self.root, self.dataset_dir)
         train_dir = os.path.join(self.dataset_dir, "train")

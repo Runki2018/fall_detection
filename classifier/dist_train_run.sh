@@ -1,17 +1,17 @@
 # 1 add 12423 images from fall dataset
 # 2 change the probability of mosaic to 0.85 (default to 1.0)
 python train.py \
---img 256 \
+--img 128 \
 --batch 64 \
 --workers 2 \
 --port 12345 \
 --device 2 \
 --epochs 200 \
 --patience 60 \
---project runs/cls_256 \
+--project runs/cls_128 \
 --name cls \
---hyp data/hyp_cls.yaml \
---weights "runs/cls_256/cls/weights/best.pt"
+--hyp hyp_cls.yaml \
+--weights "runs/cls_256/cls2/weights/best.pt"
 #--adam \
 #--sync-bn \
 #--resume

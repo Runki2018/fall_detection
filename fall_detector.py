@@ -6,9 +6,9 @@ from pathlib import Path
 from torchvision import transforms
 import random
 
-from object_track import ObjectTracker
+from object_track.object_track import ObjectTracker
 from argparse import ArgumentParser
-from kapao_utils.general import xywh2xyxy, xyxy2xywh
+from classifier.kapao_utils.general import xywh2xyxy, xyxy2xywh
 
 
 class FallDetector:

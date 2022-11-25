@@ -30,7 +30,7 @@ mkdir -p YOLOX_outputs && \
 xhost +local: && \
 docker run --gpus all -it --rm \
 -v $PWD/pretrained:/workspace/OC_SORT/pretrained \
--v $PWD/datasets:/workspace/OC_SORT/datasets \
+-v $PWD/data:/workspace/OC_SORT/data \
 -v $PWD/YOLOX_outputs:/workspace/OC_SORT/YOLOX_outputs \
 -v /tmp/.X11-unix/:/tmp/.X11-unix:rw \
 --device /dev/video0:/dev/video0:mwr \

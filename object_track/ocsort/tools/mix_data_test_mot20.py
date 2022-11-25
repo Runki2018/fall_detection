@@ -3,7 +3,7 @@ import os
 
 
 """
-cd datasets
+cd data
 mkdir -p mix_mot20_ch/annotations
 cp MOT20/annotations/val_half.json mix_mot20_ch/annotations/val_half.json
 cp MOT20/annotations/test.json mix_mot20_ch/annotations/test.json
@@ -14,7 +14,7 @@ ln -s ../crowdhuman/CrowdHuman_val crowdhuman_val
 cd ..
 """
 
-mot_json = json.load(open('datasets/MOT20/annotations/train.json','r'))
+mot_json = json.load(open('data/MOT20/annotations/train.json','r'))
 
 img_list = list()
 for img in mot_json['images']:
@@ -33,7 +33,7 @@ max_img = 10000
 max_ann = 2000000
 max_video = 10
 
-crowdhuman_json = json.load(open('datasets/crowdhuman/annotations/train.json','r'))
+crowdhuman_json = json.load(open('data/crowdhuman/annotations/train.json','r'))
 img_id_count = 0
 for img in crowdhuman_json['images']:
     img_id_count += 1
@@ -59,7 +59,7 @@ video_list.append({
 max_img = 30000
 max_ann = 10000000
 
-crowdhuman_val_json = json.load(open('datasets/crowdhuman/annotations/val.json','r'))
+crowdhuman_val_json = json.load(open('data/crowdhuman/annotations/val.json','r'))
 img_id_count = 0
 for img in crowdhuman_val_json['images']:
     img_id_count += 1
@@ -86,4 +86,4 @@ mix_json['images'] = img_list
 mix_json['annotations'] = ann_list
 mix_json['videos'] = video_list
 mix_json['categories'] = category_list
-json.dump(mix_json, open('datasets/mix_mot20_ch/annotations/train.json','w'))
+json.dump(mix_json, open('data/mix_mot20_ch/annotations/train.json','w'))

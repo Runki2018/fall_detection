@@ -19,7 +19,7 @@ class NAIC20_R2(ImageDataset):
     dataset_name = "naic20_r2"
     dataset_dir = "naic/2020_NAIC/fusai/train"
 
-    def __init__(self, root="datasets", rm_lt=False, **kwargs):
+    def __init__(self, root="data", rm_lt=False, **kwargs):
         self.root = root
 
         self.data_path = os.path.join(self.root, self.dataset_dir, "images")
@@ -99,7 +99,7 @@ class NAIC20_R2CNV(NAIC20_R2, ImageDataset):
     dataset_name = 'naic20_r2cnv'
     dataset_dir = "naic/2020_NAIC/fusai/train"
 
-    def __init__(self, root="datasets", rm_lt=False, **kwargs):
+    def __init__(self, root="data", rm_lt=False, **kwargs):
         self.root = root
 
         self.data_path = os.path.join(self.root, self.dataset_dir, "images_convert")
@@ -125,7 +125,7 @@ class NAIC20_R1(NAIC20_R2):
     dataset_name = "naic20_r1"
     dataset_dir = 'naic/2020_NAIC/chusai/train'
 
-    def __init__(self, root="datasets", rm_lt=False, **kwargs):
+    def __init__(self, root="data", rm_lt=False, **kwargs):
         self.root = root
 
         self.data_path = os.path.join(self.root, self.dataset_dir, "images")
@@ -149,7 +149,7 @@ class NAIC20_R1CNV(NAIC20_R2):
     dataset_name = 'naic20_r1cnv'
     dataset_dir = "naic/2020_NAIC/chusai/train"
 
-    def __init__(self, root="datasets", rm_lt=False, **kwargs):
+    def __init__(self, root="data", rm_lt=False, **kwargs):
         self.root = root
 
         self.data_path = os.path.join(self.root, self.dataset_dir, "images_convert")
@@ -173,7 +173,7 @@ class NAIC19(NAIC20_R2):
     dataset_name = "naic19"
     dataset_dir = "naic/2019_NAIC/fusai"
 
-    def __init__(self, root='datasets', rm_lt=False, **kwargs):
+    def __init__(self, root='data', rm_lt=False, **kwargs):
         self.root = root
 
         self.data_path = os.path.join(self.root, self.dataset_dir)
@@ -211,7 +211,7 @@ class NAIC20_R2A(ImageDataset):
     dataset_name = "naic20_b"
     dataset_dir = 'naic/round2/image_A'
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         self.root = root
 
         self.query_path = os.path.join(self.root, self.dataset_dir, "query")

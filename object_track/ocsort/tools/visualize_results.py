@@ -377,7 +377,7 @@ def merge_visualization(det_dir, track_dir, gt_dir, out_dir):
 def make_parser():
     parser = argparse.ArgumentParser("Visualize Results")
     parser.add_argument('--mode', default="val_half", type=str)
-    parser.add_argument('--img_dir', default="datasets/mot/train")
+    parser.add_argument('--img_dir', default="data/mot/train")
     parser.add_argument('--exp_dir', default="yolox_x_ablation", type=str)
     parser.add_argument('--exp_name', default="track_results", type=str)
     parser.add_argument('--vis', default="det", type=str, help="det/track/gt")
@@ -389,13 +389,13 @@ def make_parser():
 if __name__ == "__main__":
     args = make_parser()
     if args.dataset == "mot17":
-        img_dir = "datasets/mot/train"
+        img_dir = "data/mot/train"
     elif args.dataset == "mot20":
-        img_dir = "datasets/MOT20/test"
+        img_dir = "data/MOT20/test"
     elif args.dataset == "dancetrack_val":
-        img_dir = "datasets/dancetrack/val"
+        img_dir = "data/dancetrack/val"
     elif args.dataset == "dancetrack_test":
-        img_dir = "datasets/dancetrack/test"
+        img_dir = "data/dancetrack/test"
     # result_src_dir = "YOLOX_outputs/"
     # result_src_dir = "evaldata/trackers/mot_challenge/MOT17-val/"
     res_dir = args.res
@@ -418,7 +418,7 @@ if __name__ == "__main__":
         out_dir = "visualizations/yolox_x_ablation/{}/merged".format(args.exp_name)
         merge_visualization(det_dir, track_dir, gt_dir, out_dir)
     elif args.vis == "det_fasterrcnn":
-        res_dir = "datasets/mot/train"
+        res_dir = "data/mot/train"
         out_dir = "visualizations/mot17/fasterrcnn_dets"
         visualize_detections(img_dir, out_dir, res_dir, mode="full", path="{}/{}/det/det.txt")
     elif args.vis == "gt":

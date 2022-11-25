@@ -10,7 +10,7 @@ from .metrics import Count
 
 
 class Evaluator:
-    """Evaluator class for evaluating different metrics for different datasets"""
+    """Evaluator class for evaluating different metrics for different data"""
 
     @staticmethod
     def get_default_eval_config():
@@ -48,7 +48,7 @@ class Evaluator:
 
     @_timing.time
     def evaluate(self, dataset_list, metrics_list):
-        """Evaluate a set of metrics on a set of datasets"""
+        """Evaluate a set of metrics on a set of data"""
         config = self.config
         metrics_list = metrics_list + [Count()]  # Count metrics are always run
         metric_names = utils.validate_metrics_list(metrics_list)

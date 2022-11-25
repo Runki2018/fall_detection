@@ -16,7 +16,7 @@ class MS1MV2(ImageDataset):
     dataset_dir = "MS_Celeb_1M"
     dataset_name = "ms1mv2"
 
-    def __init__(self, root="datasets", **kwargs):
+    def __init__(self, root="data", **kwargs):
         self.root = root
         self.dataset_dir = os.path.join(self.root, self.dataset_dir)
 

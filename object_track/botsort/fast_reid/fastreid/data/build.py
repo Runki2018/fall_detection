@@ -25,8 +25,8 @@ __all__ = [
     "build_reid_test_loader"
 ]
 
-# _root = os.getenv("FASTREID_DATASETS", "datasets")
-_root = os.getenv("FASTREID_DATASETS", "fast_reid/datasets")
+# _root = os.getenv("FASTREID_DATASETS", "data")
+_root = os.getenv("FASTREID_DATASETS", "fast_reid/data")
 
 
 def _train_loader_from_config(cfg, *, train_set=None, transforms=None, sampler=None, **kwargs):

@@ -157,7 +157,7 @@ def main(exp, args, num_gpu):
     mmp.lap.default_solver = 'lap'
     print('gt_type', gt_type)
     gtfiles = glob.glob(
-      os.path.join('datasets/mot/train', '*/gt/gt{}.txt'.format(gt_type)))
+      os.path.join('data/mot/train', '*/gt/gt{}.txt'.format(gt_type)))
     print('gt_files', gtfiles)
     tsfiles = [f for f in glob.glob(os.path.join(results_folder, '*.txt')) if not os.path.basename(f).startswith('eval')]
 

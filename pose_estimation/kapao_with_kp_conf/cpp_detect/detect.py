@@ -219,7 +219,7 @@ class kapao():  # Keypoint and Pose as Object
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--img-path', type=str, default='../data/datasets/coco/images/test2017/000000000057.jpg',
+    parser.add_argument('--img-path', type=str, default='../data/data/coco/images/test2017/000000000057.jpg',
                         help='image path')
     parser.add_argument('--model-path', type=str, default='../runs/v7tiny_e300_640/dm100_wm522/weights/best.onnx')
     args = parser.parse_args()

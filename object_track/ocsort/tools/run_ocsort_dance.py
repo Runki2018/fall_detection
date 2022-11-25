@@ -130,7 +130,7 @@ def main(exp, args, num_gpu):
 
     # evaluate on the validation set
     mm.lap.default_solver = 'lap'
-    gtfiles = glob.glob(os.path.join('datasets/dancetrack/val', '*/gt/gt.txt'))
+    gtfiles = glob.glob(os.path.join('data/dancetrack/val', '*/gt/gt.txt'))
     print('gt_files', gtfiles)
     tsfiles = [f for f in glob.glob(os.path.join(results_folder, '*.txt')) if not os.path.basename(f).startswith('eval')]
 

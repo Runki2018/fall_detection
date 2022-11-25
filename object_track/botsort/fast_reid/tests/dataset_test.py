@@ -32,7 +32,7 @@ if __name__ == '__main__':
     # dataset = init_dataset('msmt17', combineall=True)
     get_dataloader(cfg)
     # tng_dataloader, val_dataloader, num_classes, num_query = get_dataloader(cfg)
-    # def get_ex(): return open_image('datasets/beijingStation/query/000245_c10s2_1561732033722.000000.jpg')
+    # def get_ex(): return open_image('data/beijingStation/query/000245_c10s2_1561732033722.000000.jpg')
     # im = get_ex()
     # print(data.train_ds[0])
     # print(data.test_ds[0])

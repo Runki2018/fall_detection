@@ -99,13 +99,13 @@ def process_wandb_config_ddp_mode(opt):
 
 
 class WandbLogger():
-    """Log training runs, datasets, models, and predictions to Weights & Biases.
+    """Log training runs, data, models, and predictions to Weights & Biases.
 
     This logger sends information to W&B at wandb.ai. By default, this information
     includes hyperparameters, system configuration and metrics, model metrics,
     and basic data metrics and analyses.
 
-    By providing additional command line arguments to train.py, datasets,
+    By providing additional command line arguments to train.py, data,
     models and predictions can also be logged.
 
     For more on how this logger is used, see the Weights & Biases documentation:

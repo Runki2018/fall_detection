@@ -114,10 +114,10 @@ For training the ReID, detection patches must be generated as follows:
 cd <BoT-SORT_dir>
 
 # For MOT17 
-python3 fast_reid/datasets/generate_mot_patches.py --data_path <dataets_dir> --mot 17
+python3 fast_reid/data/generate_mot_patches.py --data_path <dataets_dir> --mot 17
 
 # For MOT20
- python3 fast_reid/datasets/generate_mot_patches.py --data_path <dataets_dir> --mot 20
+ python3 fast_reid/data/generate_mot_patches.py --data_path <dataets_dir> --mot 20
 ```
 Link dataset to FastReID ```export FASTREID_DATASETS=<BoT-SORT_dir>/fast_reid/datasets```. If left unset, the default is `fast_reid/datasets` 
  

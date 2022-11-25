@@ -38,7 +38,7 @@ if __name__ == "__main__":
     name = sys.argv[1]
     os.makedirs(os.path.join("traj_plots/{}".format(name)), exist_ok=True)
 
-    gt_src = "datasets/dancetrack/val"
+    gt_src = "data/dancetrack/val"
 
     ours = "path/to/pred/output" # preds
     baseline = "path/to/baseline/output" # baseline outputs

@@ -32,7 +32,7 @@ class MOT17(ImageDataset):
     dataset_url = ''  # 'https://motchallenge.net/data/MOT17.zip'
     dataset_name = "MOT17"
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         # self.root = osp.abspath(osp.expanduser(root))
         self.root = root
         self.dataset_dir = osp.join(self.root, self.dataset_dir)

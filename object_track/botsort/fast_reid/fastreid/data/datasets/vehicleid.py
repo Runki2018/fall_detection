@@ -27,7 +27,7 @@ class VehicleID(ImageDataset):
     dataset_dir = "vehicleid"
     dataset_name = "vehicleid"
 
-    def __init__(self, root='datasets', test_list='', **kwargs):
+    def __init__(self, root='data', test_list='', **kwargs):
         self.dataset_dir = osp.join(root, self.dataset_dir)
 
         self.image_dir = osp.join(self.dataset_dir, 'image')
@@ -89,7 +89,7 @@ class SmallVehicleID(VehicleID):
         - images: 6493.
     """
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         dataset_dir = osp.join(root, self.dataset_dir)
         self.test_list = osp.join(dataset_dir, 'train_test_split/test_list_800.txt')
 
@@ -104,7 +104,7 @@ class MediumVehicleID(VehicleID):
         - images: 13377.
     """
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         dataset_dir = osp.join(root, self.dataset_dir)
         self.test_list = osp.join(dataset_dir, 'train_test_split/test_list_1600.txt')
 
@@ -119,7 +119,7 @@ class LargeVehicleID(VehicleID):
         - images: 19777.
     """
 
-    def __init__(self, root='datasets', **kwargs):
+    def __init__(self, root='data', **kwargs):
         dataset_dir = osp.join(root, self.dataset_dir)
         self.test_list = osp.join(dataset_dir, 'train_test_split/test_list_2400.txt')
 

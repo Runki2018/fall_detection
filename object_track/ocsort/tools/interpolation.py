@@ -165,7 +165,7 @@ def dti_kitti(txt_path, save_path, n_min=30, n_dti=20):
 
 if __name__ == '__main__':
     txt_path, save_path = sys.argv[1], sys.argv[2]
-    data_root = 'datasets/mot/train'
+    data_root = 'data/mot/train'
     mkdir_if_missing(save_path)
     dti(txt_path, save_path, n_min=30, n_dti=20)
     print('Before DTI: ')
