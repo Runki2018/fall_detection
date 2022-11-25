@@ -1,0 +1,32 @@
+data_root: data/le2i_falldataset
+num_class: 3
+names:
+- normal
+- falling
+- faint
+weight:
+- 0.05
+- 10.0
+- 1.0
+pos_weight:
+- 1
+- 1.5
+- 1.2
+seq_num: 16
+seq_interval: 3
+seq_features: 38
+proj_size: null
+num_layers: 2
+dropout: 0.2
+min_hidden_size: 64
+mid_c: 64
+train_multi: 100
+lr0: 0.01
+lrf: 0.2
+momentum: 0.937
+weight_decay: 0.0005
+warmup_epochs: 3.0
+warmup_momentum: 0.8
+warmup_bias_lr: 0.1
+iou_t: 0.2
+beta: 0.8

@@ -1,0 +1,6 @@
+----------------------------------------------------------------------------------------------------
+predicted samples of each class: 	[1116.    0. 2532.]
+actual samples of each class:		[2240.  256. 1152.]
+correct count of each class:		[760.   0. 858.]
+precision of each class:		[68.1, 0.0, 33.886]
+recall of each class:			[33.929, 0.0, 74.479]
