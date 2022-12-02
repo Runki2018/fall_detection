@@ -7,12 +7,15 @@ import urllib
 import random
 import numpy as np
 from pathlib import Path
-from kapao_utils.torch_utils import init_torch_seeds
 import matplotlib.pyplot as plt
 import sys
+try:
+    from kapao_utils.torch_utils import init_torch_seeds
+except ImportError:
+    from classifier.kapao_utils.torch_utils import init_torch_seeds
 
 
-def fitness(results, b=1):
+def fitness(results, b=1, f1_weights=(0.8, 1.0, 0.9)):
     """
 
     :param results: (tuple) => (precision, recall)
@@ -21,10 +24,11 @@ def fitness(results, b=1):
     """
     F_beta = []  # F1 for each class
     precision, recall = results
-    for p, r in zip(precision, recall):
+    for p, r, wi in zip(precision, recall, f1_weights):
         numerator = (1+b**2) * p * r
         denominator =(b**2) * p + r
-        F_beta.append(numerator / (denominator + 1e-6))
+        f1 = numerator / (denominator + 1e-6)
+        F_beta.append(wi * f1)
     mF_beta = sum(F_beta) / len(F_beta)
     return mF_beta
 

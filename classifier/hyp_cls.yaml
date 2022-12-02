@@ -3,17 +3,17 @@ data_root: "data/le2i_falldataset"  # root directory of videos
 # class configure
 num_class: 3  # normal 0, falling 1, faint 2
 names: ['normal', 'falling', 'faint']  # class name
-weight: [0.05, 10., 1.]   # class loss weight
-pos_weight: [1, 1.5, 1.2]  # class positive sample BCE loss for each class
+weight: [0.05, 4., 1.]   # class loss weight
+pos_weight: [1, 1.1, 1.0]  # class positive sample BCE loss for each class
 
 # sequence sampling and model structure
 #   sequence input => [batch, seq_num, seq_features]
 seq_num: 16        # input number of sequence frames
-seq_interval: 3    # sampling interval of video frames
-seq_features: 38   # 1 w + 1 h + 12*3 joints_xyv
-proj_size:     # default to None,  LSTM output size = seq_features if proj_size is None else proj_size
+seq_interval: 1    # sampling interval of video frames
+seq_features: 26   # 1 w + 1 h + 12*2 joints_xyv
+proj_size:   # default to None,  LSTM output size = seq_features if proj_size is None else proj_size
 num_layers: 2      # num_layers of LSTM
-dropout: 0.2       # dropout of LSTM
+dropout: 0.0       # dropout of LSTM
 min_hidden_size: 64   # hidden_size of LSTM = max(seq_features*4, min_hidden_size)
 
 # image input => [batch, c=3, img_size, img_size]
@@ -21,8 +21,8 @@ mid_c: 64         # channels of middle convolution
 
 # training configure
 train_multi: 100  # len(train_set) = len(train_videos) * train_multi
-prob_seq_zero: 0.2  # augmentation: randomly set 0~seq_num-2 seq to zero
-prob_kp_zero: 0.2  # augmentation: randomly set keypoints to zero
+prob_seq_zero: 0.6  # augmentation: randomly set 0~seq_num-2 seq to zero
+prob_kp_zero: 0.6  # augmentation: randomly set keypoints to zero
 lr0: 0.01  # initial learning rate (SGD=1E-2, Adam=1E-3)
 lrf: 0.2  # final OneCycleLR learning rate (lr0 * lrf)
 momentum: 0.937  # SGD momentum/Adam beta1
@@ -32,9 +32,14 @@ warmup_momentum: 0.8  # warmup initial momentum
 warmup_bias_lr: 0.1  # warmup initial bias lr
 iou_t: 0.20  # IoU training threshold
 
+# augmentation
+hsv_h: 0.015  # image HSV-Hue augmentation (fraction)
+hsv_s: 0.7  # image HSV-Saturation augmentation (fraction)
+hsv_v: 0.4  # image HSV-Value augmentation (fraction)
+
 # metric
 beta: 0.8   # count F_beta score, which likes 'beta * precision + recall'
-
+f1_weights: [0.7, 1.0, 0.9]
 
 
 

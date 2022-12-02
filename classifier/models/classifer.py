@@ -17,10 +17,27 @@ class ComputeLoss(nn.Module):
         loss = self.criterion(p, y.to(p.device))
         return loss, loss.detach()
 
+class Bottleneck(nn.Module):
+    def __init__(self, c1, stride=2):
+        super(Bottleneck, self).__init__()
+        c2 = c1 // 2
+        self.conv = nn.Sequential(
+            nn.Conv2d(c1, c2, 1, 1, 0),
+            nn.BatchNorm2d(c2),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(c2, c2, 3, stride=stride, padding=1),
+            nn.BatchNorm2d(c2),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(c2, c1, 1, 1, 0),
+            nn.BatchNorm2d(c1),
+            nn.ReLU(inplace=True),
+        )
+    def forward(self, x):
+        return self.conv(x)
 
 class Classifer(nn.Module):
     def __init__(self, num_class=3, seq_num=16, x_size=37, y_size=None, num_layers=2,
-                 dropout=0.2, mid_c=64, min_hidden_size=128):
+                 dropout=0.2, mid_c=64, min_hidden_size=128, bidirectional=False):
         super().__init__()
         # input [Batch, seq_num, x_size] -> output [Batch, seq_num, y_size]
         y_size = y_size if y_size is not None else x_size
@@ -30,38 +47,49 @@ class Classifer(nn.Module):
                             num_layers=num_layers,
                             batch_first=True,
                             dropout=dropout,
-                            bidirectional=False)
-
+                            bidirectional=bidirectional)
+        D = 2 if bidirectional else 1
         self.seq_attention = nn.Sequential(
-            nn.LayerNorm([seq_num, y_size]),
-            nn.Linear(y_size, y_size),
+            nn.LayerNorm([seq_num, D* y_size]),
+            nn.Linear(D*y_size, D*y_size),
             # nn.BatchNorm1d(seq_num),
-            nn.LayerNorm([seq_num, y_size]),
-            nn.ReLU(),
-            nn.Linear(y_size, 1),
+            nn.LayerNorm([seq_num, D*y_size]),
+            nn.ReLU(inplace=True),
+            nn.Linear(D*y_size, 1),
             nn.Sigmoid()
         )
 
-        self.adaptive_avg_pool = nn.AdaptiveAvgPool2d((9, 9))
-        self.adaptive_max_pool = nn.AdaptiveMaxPool2d((9, 9))
+        # TODO: add Conv-BN fuse
         self.conv = nn.Sequential(
-            nn.Conv2d(6, mid_c, 1, 1, 0),
+            nn.Conv2d(3, mid_c, 3, 2, 1),
             nn.BatchNorm2d(mid_c),
-            nn.ReLU(),
-            nn.Conv2d(mid_c, mid_c, 3, 1, 1),
-            nn.BatchNorm2d(mid_c),
-            nn.ReLU(),
-            nn.Conv2d(mid_c, mid_c // 2, 1, 1, 0),
-            nn.BatchNorm2d(mid_c // 2),
-            nn.ReLU(),
-            nn.Flatten(),
-            nn.Linear(mid_c // 2 * 81, y_size)
+            Bottleneck(mid_c, stride=2),
+            Bottleneck(mid_c, stride=2),
+            Bottleneck(mid_c, stride=2),
+            Bottleneck(mid_c, stride=2),
         )
+
+        self.conv_attention = nn.Sequential(
+            nn.AdaptiveAvgPool2d(1),
+            nn.Conv2d(mid_c, mid_c, 1, 1, 0),
+            nn.BatchNorm2d(mid_c),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(mid_c, mid_c, 1, 1, 0),
+            # nn.Sigmoid(),
+            nn.Softmax()
+        )
+
+        self.conv_linear = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(mid_c * 16, y_size),
+            nn.BatchNorm1d(y_size)
+        )
+
         self.out_layer = nn.Sequential(
-            nn.Linear(2*y_size, min_hidden_size),
+            nn.Linear((1+D)*y_size, min_hidden_size),
             nn.LayerNorm([min_hidden_size]),
             # nn.BatchNorm1d(min_hidden_size),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.Linear(min_hidden_size, num_class),
             # nn.Sigmoid()
         )
@@ -75,11 +103,9 @@ class Classifer(nn.Module):
         # self.assert_tensor(y_seq)
         y_seq = torch.sum(y_seq, dim=1)
         # self.assert_tensor(y_seq)
-        y_img1 = self.adaptive_max_pool(img)
-        # self.assert_tensor(y_img1)
-        y_img2 = self.adaptive_avg_pool(img)
-        # self.assert_tensor(y_img2)
-        y_img = self.conv(torch.cat([y_img1, y_img2], dim=1))
+        y_img = self.conv(img)
+        y_img = y_img * self.conv_attention(y_img)
+        y_img = self.conv_linear(y_img)
         # self.assert_tensor(y_img)
         y = torch.cat([y_seq, y_img], dim=1)
         # self.assert_tensor(y)
@@ -93,7 +119,7 @@ class Classifer(nn.Module):
 
 
 if __name__ == '__main__':
-    x_size = int(12*3 + 1)  # 2*num_joints + wh_ratio
+    x_size = int(12*2 + 2)  # 2*num_joints + wh_ratio
     len_seq = 16  # 16 frame
     model = Classifer(num_class=3,
                       seq_num=len_seq,
@@ -103,9 +129,10 @@ if __name__ == '__main__':
                       dropout=0.2,
                       mid_c=64,
                       min_hidden_size=128)
-
-    img = torch.rand(1, 3, 64, 64)
-    kpt_seq = torch.rand(1, len_seq, x_size)
+    model.eval()
+    batch = 2
+    img = torch.rand(batch , 3, 128, 128)
+    kpt_seq = torch.rand(batch , len_seq, x_size)
     y = model(img, kpt_seq)
     print(f"{y.shape=}")
     print(f"{y=}")

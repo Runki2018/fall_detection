@@ -41,7 +41,7 @@ def parse_opt(known=False):
     parser.add_argument('--exist-ok', action='store_true', help='existing project/name ok, do not increment')
 
     parser.add_argument('--weights', type=str, default='', help='initial weights path')
-    parser.add_argument('--hyp', type=str, default='data/hyp_cls.yaml', help='hyperparameters path')
+    parser.add_argument('--hyp', type=str, default='hyp_cls.yaml', help='hyperparameters path')
     parser.add_argument('--imgsz', '--img', '--img-size', type=int, default=640, help='train, val image size (pixels)')
     parser.add_argument('--epochs', type=int, default=300)
     parser.add_argument('--batch-size', type=int, default=8, help='total batch size for all GPUs')
@@ -51,7 +51,7 @@ def parse_opt(known=False):
     # parser.add_argument('--init_method', default='tcp://127.0.0.1:12345', help='DDP init method')
     parser.add_argument('--sync-bn', action='store_true', help='use SyncBatchNorm, only available in DDP mode')
     parser.add_argument('--adam', action='store_true', help='use torch.optim.Adam() optimizer')
-    parser.add_argument('--rect', action='store_true', help='rectangular training')
+
     parser.add_argument('--search-cfg', action='store_true', help='search the best depth and width multiple')
     parser.add_argument('--resume', nargs='?', const=True, default=False, help='resume most recent training')
     parser.add_argument('--nosave', action='store_true', help='only save final checkpoint')
@@ -93,9 +93,8 @@ def train(opt, device, RANK, WORLD_SIZE):
     cuda = device.type != 'cpu'
     init_seeds(1 + RANK)
 
-    data_root = hyp['data_root']
     with torch_distributed_zero_first(RANK):
-        train_videos, test_videos = create_cache(data_root)
+        train_videos, test_videos = create_cache(hyp['data_root'])
     num_class = hyp['num_class']  # number of classes
     class_names = hyp['names']  # class name
     assert len(class_names) == num_class, f'{len(class_names)} names found for {num_class=} dataset in {opt.hyp}'
@@ -127,8 +126,9 @@ def train(opt, device, RANK, WORLD_SIZE):
     # Process 0
     if RANK in [-1, 0]:
         writer = SummaryWriter(logdir=str(opt.save_dir))
-        val_loader, _ = create_dataloader(opt.batch_size, opt.workers, train_videos,
-                                       opt.imgsz, hyp['seq_num'], hyp['seq_interval'], is_train=False)
+        val_loader, _ = create_dataloader(opt.batch_size, opt.workers, test_videos,
+                                          opt.imgsz, hyp['seq_num'], hyp['seq_interval'],
+                                          is_train=False)
 
     # SyncBatchNorm
     if opt.sync_bn and cuda and RANK != -1:
@@ -221,6 +221,7 @@ def train(opt, device, RANK, WORLD_SIZE):
                         x['momentum'] = np.interp(ni, xi, [hyp['warmup_momentum'], hyp['momentum']])
 
             images = images.to(device, non_blocking=True)  # uint8 to float32, 0-255 to 0.0-1.0
+            seq_features = seq_features.to(device, non_blocking=True)
 
             # Forward
             with amp.autocast(enabled=cuda):
@@ -271,9 +272,8 @@ def train(opt, device, RANK, WORLD_SIZE):
                 confusion_matrix = torch.zeros((num_class, num_class))
                 pbar = tqdm(enumerate(val_loader), desc="validating", total=len(val_loader))
                 for i, (images, seq_features, targets) in pbar:  # mini-batch iteration ----------------
-                    preds = model(images.to(device), seq_features)  # forward
-                    loss, loss_items = criterion(pred, targets)
-                    # loss, loss_items = model.compute_loss(pred, targets)
+                    preds = model(images.to(device), seq_features.to(device))  # forward
+                    loss, loss_items = criterion(preds, targets)
                     targets = targets.squeeze().to(device)
                     preds = torch.argmax(preds, dim=1)
                     for p, t in zip(preds.type(torch.long), targets.type(torch.long)):
